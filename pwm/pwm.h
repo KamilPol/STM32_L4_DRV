@@ -1,6 +1,6 @@
 #ifndef PWM_H
 #define PWM_H
-#include "stm32g4xx.h"
+#include "stm32l4xx.h"
 #include "UART.h"
 #include "board.h"
 typedef struct

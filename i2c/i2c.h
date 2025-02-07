@@ -1,7 +1,7 @@
 #ifndef I2C_H
 #define I2C_H
 #include <stdint.h>
-#include "stm32g4xx.h"
+#include "stm32l4xx.h"
 #include "board.h"
 
 class I2C

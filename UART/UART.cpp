@@ -106,7 +106,7 @@ char Serial::readChar ()
 
 bool Serial::readTillEOL (char *_line) // returns 1 if EOL is found, 0 if not, when EOL is found save read data to _line
 {
-	if (uart.available())
+	if (available())
 	{		
 		
 		if(count==0)
@@ -118,7 +118,7 @@ bool Serial::readTillEOL (char *_line) // returns 1 if EOL is found, 0 if not, w
 				}							
 		}		
 
-		char c = uart.readChar();
+		char c = readChar();
 		if (c == '\n')
 		{
 			//GPIOA->ODR ^= GPIO_ODR_OD5;

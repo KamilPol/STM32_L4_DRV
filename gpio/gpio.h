@@ -1,6 +1,6 @@
 #ifndef GPIO_H
 #define GPIO_H
-#include "stm32g4xx.h"
+#include "stm32l4xx.h"
 
 enum class GPIOmode
 {

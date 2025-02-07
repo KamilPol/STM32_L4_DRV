@@ -1,6 +1,6 @@
 #ifndef ADC_H
 #define ADC_H
-#include "stm32g4xx.h"
+#include "stm32l4xx.h"
 typedef uint32_t adcChannelsCount_t;
 typedef uint32_t adcChannelNumbers_t;
 

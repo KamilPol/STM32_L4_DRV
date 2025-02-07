@@ -1,7 +1,7 @@
 #ifndef UART_H
 #define UART_H
 
-#include "stm32g4xx.h"
+#include "stm32l4xx.h"
 #include "buffer.h"
 #include "board.h"
 #include "typeConverter.h"

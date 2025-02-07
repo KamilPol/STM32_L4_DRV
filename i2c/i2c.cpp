@@ -14,9 +14,6 @@ I2C::I2C(I2C_TypeDef* _I2Cx): I2Cx(_I2Cx)
 		case I2C3_BASE:
 			RCC->APB1ENR1 |= RCC_APB1ENR1_I2C3EN;
 			break;
-		case I2C4_BASE:
-			RCC->APB1ENR2 |= RCC_APB1ENR2_I2C4EN;
-			break;
 	}
 
 	
