@@ -46,6 +46,7 @@ static inline void pwm_init (pwm_t* pwm)
 	pwm->tim->CCR4= pwm->halfAutoReloadValue;
 }
 
+
 static inline void pwm_set3Phase_pu(pwm_t* pwm, float* duty3P_pu) //-1 to 1 corresponds to 0 to 100% duty cycle
 {
     pwm->tim->CCR1 = pwm->halfAutoReloadValue * duty3P_pu[1] + pwm->halfAutoReloadValue;

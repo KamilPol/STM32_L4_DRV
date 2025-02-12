@@ -1,6 +1,8 @@
 #ifndef ADC_H
 #define ADC_H
 #include "stm32l4xx.h"
+
+
 typedef uint32_t adcChannelsCount_t;
 typedef uint32_t adcChannelNumbers_t;
 
@@ -32,8 +34,14 @@ typedef struct
     adcError_t adcError;
 }adcChannel_t;
 
-adcError_t adc_init(adcChannel_t* aIns);
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+adcError_t adc_init(adcChannel_t* aIns);
+#ifdef __cplusplus
+}
+#endif
 
 
 

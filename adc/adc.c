@@ -2,32 +2,24 @@
 
 adcError_t adc_init(adcChannel_t* aIns)
 {
-    // switch ((uint32_t)aIns->adc)
-    // {
-    //     case ADC1_BASE:
-    //         RCC->AHB2ENR |= RCC_AHB2ENR_ADC12EN;
-    //         ADC12_COMMON->CCR |= (0b11 << ADC_CCR_CKMODE_Pos | ADC_CCR_VREFEN);	// Set ADC clock to HCLK/2 and enable VREFINT
-    //     break;
-    //     case ADC2_BASE:
-    //         RCC->AHB2ENR |= RCC_AHB2ENR_ADC12EN;
-    //         ADC12_COMMON->CCR |= (0b11 << ADC_CCR_CKMODE_Pos | ADC_CCR_VREFEN);	// Set ADC clock to HCLK/2 and enable VREFINT
-    //     break;
-    //     case ADC3_BASE:
-    //         RCC->AHB2ENR |= RCC_AHB2ENR_ADC345EN;
-    //         ADC345_COMMON->CCR |= (0b11 << ADC_CCR_CKMODE_Pos | ADC_CCR_VREFEN);
-    //     break;
-    //     case ADC4_BASE:
-    //         RCC->AHB2ENR |= RCC_AHB2ENR_ADC345EN;
-    //         ADC345_COMMON->CCR |= (0b11 << ADC_CCR_CKMODE_Pos | ADC_CCR_VREFEN);
-    //     break;
-    //     case ADC5_BASE:
-    //         RCC->AHB2ENR |= RCC_AHB2ENR_ADC345EN;
-    //         ADC345_COMMON->CCR |= (0b11 << ADC_CCR_CKMODE_Pos | ADC_CCR_VREFEN);
-    //     break;
-    //     default:
-    //         return wrongADCmodule;
-    //     break;
-    // }
+    switch ((uint32_t)aIns->adc)
+    {
+        case ADC1_BASE:
+            RCC->AHB2ENR |= RCC_AHB2ENR_ADCEN;
+            ADC123_COMMON->CCR |= (0b11 << ADC_CCR_CKMODE_Pos | ADC_CCR_VREFEN);	// Set ADC clock to HCLK/2 and enable VREFINT
+        break;
+        case ADC2_BASE:
+            RCC->AHB2ENR |= RCC_AHB2ENR_ADCEN;
+            ADC123_COMMON->CCR |= (0b11 << ADC_CCR_CKMODE_Pos | ADC_CCR_VREFEN);	// Set ADC clock to HCLK/2 and enable VREFINT
+        break;
+        case ADC3_BASE:
+            RCC->AHB2ENR |= RCC_AHB2ENR_ADCEN;
+            ADC123_COMMON->CCR |= (0b11 << ADC_CCR_CKMODE_Pos | ADC_CCR_VREFEN);
+        break;
+        default:
+            return wrongADCmodule;
+        break;
+    }
 
 	aIns->adc->CR |= ADC_CR_ADSTP;
 	while((aIns->adc->ISR & ADC_ISR_ADRDY));	
@@ -39,6 +31,7 @@ adcError_t adc_init(adcChannel_t* aIns)
         aIns->adc->CFGR |= ADC_CFGR_CONT;
     }
     aIns->adc->CR |= ADC_CR_ADVREGEN;	
+   // aIns->adc->CR &=~ADC_CR_ADCALDIF;
 	aIns->adc->CR |= ADC_CR_ADCAL;
 	while(aIns->adc->CR & ADC_CR_ADCAL);
 
@@ -65,6 +58,8 @@ adcError_t adc_init(adcChannel_t* aIns)
             aIns->adc->SQR4 |= *(aIns->channels+i) << ((i-15)*6);
         }
     }
+
+    
 	aIns->adc->CR |= ADC_CR_ADEN;
 	while(!(aIns->adc->ISR & ADC_ISR_ADRDY));
 	aIns->adc->CR |= ADC_CR_ADSTART;
