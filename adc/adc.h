@@ -12,7 +12,6 @@ typedef enum
     channelCountErr,
     channelNumberErr,
     wrongADCmodule
-
 }adcError_t;
 
 typedef enum 
@@ -43,6 +42,9 @@ adcError_t adc_init(adcChannel_t* aIns);
 }
 #endif
 
-
+static inline uint32_t adc_getDataReg(adcChannel_t* aIns) //simplest method to get adc data, works only for single channel adc
+{
+    return aIns->adc->DR;
+}
 
 #endif // ADC_H

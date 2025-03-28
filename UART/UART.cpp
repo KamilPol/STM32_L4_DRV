@@ -99,7 +99,7 @@ void Serial::println(double _number, uint8_t _percision)
 
 char Serial::readChar ()
 {
-	char tmpChar;
+	char tmpChar = 255;
 	buffer.read(&tmpChar);
 	return tmpChar;
 }
@@ -108,7 +108,6 @@ bool Serial::readTillEOL (char *_line) // returns 1 if EOL is found, 0 if not, w
 {
 	if (available())
 	{		
-		
 		if(count==0)
 		{
 				for (int i=0; i<=elementsToFlush; i++)
@@ -117,7 +116,6 @@ bool Serial::readTillEOL (char *_line) // returns 1 if EOL is found, 0 if not, w
 					*tempPtr = 0;				
 				}							
 		}		
-
 		char c = readChar();
 		if (c == '\n')
 		{

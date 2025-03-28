@@ -7,6 +7,7 @@ adcError_t adc_init(adcChannel_t* aIns)
         case ADC1_BASE:
             RCC->AHB2ENR |= RCC_AHB2ENR_ADCEN;
             ADC123_COMMON->CCR |= (0b11 << ADC_CCR_CKMODE_Pos | ADC_CCR_VREFEN);	// Set ADC clock to HCLK/2 and enable VREFINT
+            ADC1->SMPR1 |= 0b101 << (6 * 3);
         break;
         case ADC2_BASE:
             RCC->AHB2ENR |= RCC_AHB2ENR_ADCEN;
